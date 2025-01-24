@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title>Students Performance Classification Model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        Student Absence Days:
+        <select name="absence" required>
+            <option value="Under-7">Under-7</option>
+            <option value="Above-7">Above-7</option>
+        </select>
+        <br>
+        <br> Parent Answering Survey:
+        <select name="survey" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <br>
+        <br> Relation:
+        <select name="relation" required>
+            <option value="Father">Father</option>
+            <option value="Mum">Mother</option>
+        </select>
+        <br>
+        <br> Parent School Satisfaction:
+        <select name="absence" required>
+            <option value="Good">Good</option>
+            <option value="Bad">Bad</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+    <fieldset>
+        <legend></legend>
+        Announcements View:
+        <input name="announcements" type="number" min="1" max="100" required>
+        <br>
+        <br> Raised Hands:
+        <input name="raised" type="number" min="1" max="100" required>
+        <br>
+        <br> Visited Resource:
+        <input name="resources" type="number" min="1" max="100" required>
+        <br>
+        <br> Discussion:
+        <input name="discussion" type="number" min="1" max="100" required>
+        <br>
+        <br>
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Predicted number of bikes in use:
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</html>
